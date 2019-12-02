@@ -17,13 +17,13 @@
  <link rel="stylesheet" href="/css/tweet.css">
  
  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153722938-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153765665-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-153722938-1');
+  gtag('config', 'UA-153765665-1');
 </script>
 </head>
 <body>
@@ -32,7 +32,6 @@
   <a href="tweet.jsp">Tweet</a>
   <a href="friendsTweets.jsp">Friends</a>
   <a id=toptweet>Top Tweet</a>
-  <a href="#about"></a>
   <div id="fb-root"></div>
   <div align="right">
   <div class="fb-login-button" data-max-rows="1"    data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true"  data-use-continue-as="true" scope="public_profile,email" onlogin="checkLoginState();"></div>
