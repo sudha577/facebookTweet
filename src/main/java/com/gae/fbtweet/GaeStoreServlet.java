@@ -30,12 +30,12 @@ public class GaeStoreServlet extends HttpServlet {
 		
 		e.setProperty("first_name", req.getParameter("first_name"));
 		e.setProperty("last_name", req.getParameter("last_name"));
-		e.setProperty("picture", req.getParameter("picture"));
+		e.setProperty("picture", req.getParameter("profile_pic"));
 		e.setProperty("visited_count", 0);
 		Cookie user_id = new Cookie("user_id", req.getParameter("user_id"));	
 		Cookie f_name= new Cookie("first_name",req.getParameter("first_name"));
 		Cookie l_name=new Cookie("last_name", req.getParameter("last_name"));
-		Cookie pic = new Cookie("picture", req.getParameter("picture"));
+		Cookie pic = new Cookie("picture", req.getParameter("profile_pic"));
 		resp.addCookie(user_id);
 		//resp.addCookie(f_name);
 		//resp.addCookie(l_name);
