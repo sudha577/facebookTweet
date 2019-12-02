@@ -26,7 +26,7 @@
 <body>
 	<div class="topnav">
 		<a href="tweet.jsp">TWEET</a> 
-		<a href="friendsTweet.jsp">FRIENDS</a> 
+		<a href="friendsTweets.jsp">FRIENDS</a> 
 		<a id=toptweet href="toptweet.jsp">TOP-TWEET</a>
 	   <a href="#about"></a>
 		<div id="fb-root"></div>
@@ -85,7 +85,6 @@
 	<tr>
 		<td><div style="height: 100px; width: 100px">
 				<img src="<%=pic%>"/></div>
-				<td>picture url: <%= pic %></td>
 		<td>
 		<td>User: <%=first_name + " " + lastName%>
 		</td>

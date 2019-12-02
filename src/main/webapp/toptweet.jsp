@@ -23,7 +23,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <div class="topnav">
   <a href="tweet.jsp">TWEET</a>
-  <a href="friendsTweet.jsp">FRIENDS</a>
+  <a href="friendsTweets.jsp">FRIENDS</a>
   <a  id=toptweet href="toptweet.jsp">TOP-TWEET</a>
   <a href="#about"></a>
   <div id="fb-root"></div>
@@ -52,12 +52,12 @@
 			  Long visited_count = (Long)((result.getProperty("visited_count")));
 %>
 			  
-			  <table >
+			  <table>
 			 
-			  <td>User: <%= first_name+" "+lastName %> </td></tr>
-			  <tr><td><br><br><br><br><br>Status: <%= status %></td></tr>
-			  <tr><td>Posted at: <%=time %></td></tr>
-			  <tr><td>#Visited: <%= visited_count %></td></tr>
+			  <td><strong>User:</strong> <%= first_name+" "+lastName %> </td></tr>
+			  <tr><td><strong>Status:</strong> <%= status %></td></tr>
+			  <tr><td><strong>Posted at:</strong> <%=time %></td></tr>
+			  <tr><td><strong>#Visited:</strong> <%= visited_count %></td></tr>
 			  </table>
 			  
 			  <br><hr>	<br>

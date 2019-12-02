@@ -4,18 +4,10 @@ xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-	<servlet>
-		<servlet-name>FBTweet</servlet-name>
-		<servlet-class>com.gae.fbtweet.FBTweetServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>FBTweet</servlet-name>
-		<url-pattern>/fbtweet</url-pattern>
-	</servlet-mapping>
 	
 	<servlet>
 		<servlet-name>GaeStore</servlet-name>
-		<servlet-class>com.gae.fbtweet.GaeStoreServlet</servlet-class>
+		<servlet-class>com.gae.fbtweet.DataStoreServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>GaeStore</servlet-name>

@@ -20,7 +20,7 @@
 <div class="topnav">
 
   <a href="tweet.jsp">Tweet</a>
-  <a href="friendsTweet.jsp">Friends</a>
+  <a href="friendsTweets.jsp">Friends</a>
   <a id=toptweet>Top Tweet</a>
   <a href="#about"></a>
   <div id="fb-root"></div>

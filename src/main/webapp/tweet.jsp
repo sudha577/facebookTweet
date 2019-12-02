@@ -14,7 +14,7 @@
 <form id="storegae" action="GaeStore" method="get" name="storegae"  >
 <div class="topnav">
 		<a href="tweet.jsp">TWEET</a> 
-		<a href="friendsTweet.jsp">FRIENDS</a> 
+		<a href="friendsTweets.jsp">FRIENDS</a> 
 		<a id=toptweet href="toptweet.jsp">TOP-TWEET</a>
 		<div id="fb-root"></div>
 		<div align="center">
