@@ -16,7 +16,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="/css/tweet.css">
-<h1>TOP 10 TWEETS IN MY APPLICATION!</h1>
 </head>
 <body>
  <script type="text/javascript" src="/js/tweet.js"></script>
@@ -24,7 +23,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <div class="topnav">
   <a href="tweet.jsp">TWEET</a>
-  <a href="friendstweet.jsp">FRIENDS</a>
+  <a href="friendsTweet.jsp">FRIENDS</a>
   <a  id=toptweet href="toptweet.jsp">TOP-TWEET</a>
   <a href="#about"></a>
   <div id="fb-root"></div>
@@ -32,7 +31,7 @@
   <div class="fb-login-button" data-max-rows="1"    data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true"  data-use-continue-as="true" scope="public_profile,email" onlogin="checkLoginState();"></div>
   </div>
 </div>
-
+<h1>Here are the top 10 tweets!!</h1>
 </body>
 </html>
 <%
@@ -53,14 +52,15 @@
 			  Long visited_count = (Long)((result.getProperty("visited_count")));
 %>
 			  
-			  <table frame=box>
+			  <table >
 			 
 			  <td>User: <%= first_name+" "+lastName %> </td></tr>
 			  <tr><td><br><br><br><br><br>Status: <%= status %></td></tr>
 			  <tr><td>Posted at: <%=time %></td></tr>
 			  <tr><td>#Visited: <%= visited_count %></td></tr>
 			  </table>
-			  <br><br>
+			  
+			  <br><hr>	<br>
 			<%  Entity s=ds.get(KeyFactory.createKey("tweet", id));
 			  s.setProperty("visited_count", visited_count+1);
 			  ds.put(s);

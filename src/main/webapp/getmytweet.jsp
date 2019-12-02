@@ -22,12 +22,11 @@
 <script type="text/javascript" src="/js/tweet.js"></script>
 <script> callme();</script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<h1><center>My Tweets</center></h1>
 </head>
 <body>
 	<div class="topnav">
 		<a href="tweet.jsp">TWEET</a> 
-		<a href="friendstweet.jsp">FRIENDS</a> 
+		<a href="friendsTweet.jsp">FRIENDS</a> 
 		<a id=toptweet href="toptweet.jsp">TOP-TWEET</a>
 	   <a href="#about"></a>
 		<div id="fb-root"></div>
@@ -38,26 +37,39 @@
 				scope="public_profile,email" onlogin="checkLoginState();"></div>
 		</div>
 	</div>
-
-
+<h1>Here are my tweets!!</h1>
 </body>
 </html>
+
 
 <%
 	DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 	Entity e = new Entity("tweet");
 	Query q = new Query("tweet");
+	String uid=null;
+	String pic=null;
+	Cookie cookie = null;
+	Cookie[] cookies = null;
+	cookies = request.getCookies();
+	for (int i = 0; i < cookies.length; i++) {
+	if(cookies[i].getName().compareTo("picture")==0){
+		pic=cookies[i].getValue();
+	}
+	if(cookies[i].getName().compareTo("user_id")==0){
+		uid=cookies[i].getValue();
+	}
+	}
 	PreparedQuery pq = ds.prepare(q);
 	int count = 0;
 	for (Entity result : pq.asIterable()) {
 		if (result.getProperty("user_id") != null
-				&& ((result.getProperty("user_id")).equals(request.getParameter("user_ids")))) {
+				&& ((result.getProperty("user_id")).equals(uid))) {
 			//out.println(result.getProperty("first_name")+" "+request.getParameter("name"));
 			String first_name = (String) result.getProperty("first_name");
 			count++;
 			String lastName = (String) result.getProperty("last_name");
 			String user_id = (String) result.getProperty("user_id");
-			String picture = (String) result.getProperty("profile_pic");
+			//String picture = (String) result.getProperty("picture");
 			String status = (String) result.getProperty("status");
 			Long id = (Long) result.getKey().getId();
 			String time = (String) result.getProperty("timestamp");
@@ -72,7 +84,8 @@
 <table>
 	<tr>
 		<td><div style="height: 100px; width: 100px">
-				<%=picture%></div>
+				<img src="<%=pic%>"/></div>
+				<td>picture url: <%= pic %></td>
 		<td>
 		<td>User: <%=first_name + " " + lastName%>
 		</td>
@@ -131,6 +144,7 @@
 	</script>
 	</div>
 </table>
+<hr>
 <script type="text/javascript">
 
 function shareMyTweet( message){

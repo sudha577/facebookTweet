@@ -5,7 +5,7 @@ var picture;
 function callme(){
 window.fbAsyncInit = function() {
     FB.init({
-      appId      : '2655894427972386',
+      appId      : '413904159227162',
       cookie     : true,
       xfbml      : true,
       version    : 'v2.9'
@@ -66,7 +66,7 @@ function statusChangeCallback(response) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=900799546729806";
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=413904159227162";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
@@ -88,8 +88,8 @@ function shareTweet(){
 function shareDirectTweet(){
 	checkLoginState();
 	FB.ui({method: 'share',
-		href: "https://apps.facebook.com/2655894427972386",
-		quote: "https://apps.facebook.com/2655894427972386",
+		href: "https://apps.facebook.com/413904159227162",
+		quote: "https://apps.facebook.com/413904159227162",
 		},function(response){
 		if (!response || response.error)
 		{
@@ -104,7 +104,7 @@ function shareDirectTweet(){
 function extractInfo(){
 	FB.api('/me', 
 			'GET',
-			{"fields":"id,first_name,last_name"},
+			{"fields":"id,first_name,last_name,picture.width(125).height(125)"},
 			function(response){
 				first_name = response.first_name;
 				console.log(response);
@@ -114,19 +114,12 @@ function extractInfo(){
 				localStorage.setItem('first_name',first_name);
 				document.cookie="last_name="+last_name;
 				localStorage.setItem('last_name',last_name);
+				picture=response.picture.data.url;
+				document.cookie="picture="+picture;
+				localStorage.setItem('picture',picture);
 				console.log(document.cookie);
 			});
-	 FB.api(
-			  '/me/picture',
-			  'GET',
-			  {"height":"100"},
-			  function(response) {
-			      // Insert your code here
-				  picture = "<img src='" + response.data.url + "'>";
-				  document.cookie="picture="+picture;
-				localStorage.setItem('picture',picture);
-			  }
-			);
+	
 	 document.getElementById("user_ids").value    = getCookie('user_id');
 	document.getElementById("user_id").value    = getCookie('user_id');
 	document.getElementById("first_name").value = getCookie('first_name');

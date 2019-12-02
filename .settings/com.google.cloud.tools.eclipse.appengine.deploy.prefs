@@ -1,9 +1,9 @@
-account.email=skukutla@horizon.csueastbay.edu
+account.email=jkoppaka@horizon.csueastbay.edu
 eclipse.preferences.version=1
 include.optional.configuration.files=true
 project.allowObsoleteRuntime=false
 project.bucket=
-project.id=my-gae-project-255518
+project.id=myfirstgaeproject-255518
 project.previousVersion.stop=true
 project.promote=true
 project.version=
