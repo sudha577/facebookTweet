@@ -57,7 +57,7 @@
 			count++;
 			String lastName = (String) result.getProperty("last_name");
 			String user_id = (String) result.getProperty("user_id");
-			String picture = (String) result.getProperty("profile_pic");
+			String picture = (String) result.getProperty("picture");
 			String status = (String) result.getProperty("status");
 			Long id = (Long) result.getKey().getId();
 			String time = (String) result.getProperty("timestamp");

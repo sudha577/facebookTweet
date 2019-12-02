@@ -67,7 +67,7 @@
 					<script>
 						console.log(document.getElementById("first_name") + " "
 								+ document.getElementById("last_name") + " "
-								+ document.getElementById("profile_pic"));
+								+ document.getElementById("picture"));
 					</script>
 					<td><input type="submit" id=submit name=save class="button"
 						value="Send Tweet" /></td>
@@ -124,7 +124,7 @@
 		document.getElementById("first_name").value = getCookie('first_name');
 		document.getElementById("first_names").value = getCookie('first_name');
 		document.getElementById("last_name").value = getCookie('last_name');
-		document.getElementById("picture").value = getCookie('profile_pic');
+		document.getElementById("picture").value = getCookie('picture');
 		document.getElementById("toptweet").href = "toptweet.jsp?name="
 				+ getCookie("first_name");
 	</script>

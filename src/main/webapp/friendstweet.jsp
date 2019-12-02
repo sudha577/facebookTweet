@@ -41,9 +41,8 @@
 	for (Entity result : pq.asIterable()) {
 			  //out.println(result.getProperty("first_name")+" "+request.getParameter("name"));
 			  String first_name = (String) result.getProperty("first_name");
-			  String name = (String) result.getProperty("name ");
 			  String lastName = (String) result.getProperty("last_name");
-			  String picture = (String) result.getProperty("profile_pic");
+			  String picture = (String) result.getProperty("picture");
 			  String status = (String) result.getProperty("status");
 			  Long id = (Long) result.getKey().getId();
 			  String time = (String) result.getProperty("timestamp");
@@ -52,7 +51,6 @@
 			  <tbody>
 			  <tr><div style="height: 50px; width: 50px position: relative"><%=picture %></div></tr>
 			  <tr><br><br><br>User: <%= first_name %> <%= lastName %> </tr>
-			  <br><tr>User: <%= name %> </tr>
 			  <br><tr>Status: <%= status %> </tr>
 			  <br><tr>Posted Date: <%= time %> </tr>
 			  <br><tr>Visited#: <%= visited_count %></tr><br><br>

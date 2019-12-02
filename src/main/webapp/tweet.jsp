@@ -91,7 +91,7 @@ document.getElementById("user_id").value       = getCookie('user_id');
 document.getElementById("first_name").value = getCookie('first_name');
 document.getElementById("first_names").value = getCookie('first_name');
 document.getElementById("last_name").value  = getCookie('last_name');
-document.getElementById("picture").value    = getCookie('profile_pic');
+document.getElementById("picture").value    = getCookie('picture');
 document.getElementById("toptweet").href="toptweet.jsp?name="+getCookie("first_name");
 
 </script>
@@ -114,7 +114,7 @@ document.getElementById("toptweet").href="toptweet.jsp?name="+getCookie("first_n
 			count++;
 			String lastName = (String) result.getProperty("last_name");
 			String user_id = (String) result.getProperty("user_id");
-			String picture = (String) result.getProperty("picture");
+			String picture = (String) result.getProperty("profile_pic");
 			String status = (String) result.getProperty("status");
 			Long id = (Long) result.getKey().getId();
 			String time = (String) result.getProperty("timestamp");
@@ -125,6 +125,8 @@ document.getElementById("toptweet").href="toptweet.jsp?name="+getCookie("first_n
 					+ request.getContextPath() + "/";
 			sb.append(baseURL + "direct_tweet.jsp?id=" + id);
 %>
+<div style="height: 100px; width: 100px">
+				<img src='" + result.getProperty("picture.url") + "'></div>
 
 
 		<form action="getmytweet.jsp" action="GET">

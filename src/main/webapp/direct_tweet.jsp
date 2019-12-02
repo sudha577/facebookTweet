@@ -47,7 +47,7 @@ long visited_count=0;
 for (Entity result : pq.asIterable()) {
    	  String first_name = (String) result.getProperty("first_name");
 	  String lastName = (String) result.getProperty("last_name");
-	  String picture = (String) result.getProperty("profile_pic");
+	  String picture = (String) result.getProperty("picture");
 	  String status = (String) result.getProperty("status");
 	  Long id = (Long) result.getKey().getId();
 	  String time = (String) result.getProperty("timestamp");
