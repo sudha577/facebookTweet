@@ -3,6 +3,7 @@ var last_name;
 var picture;
 
 function callme(){
+//This code will load and initialize the SDK.
 window.fbAsyncInit = function() {
     FB.init({
       appId      : '413904159227162',
@@ -10,13 +11,15 @@ window.fbAsyncInit = function() {
       xfbml      : true,
       version    : 'v2.9'
     });
+    //This will automatically log events
     FB.AppEvents.logPageView(); 
     loadsdk();
+    //Function to check if app user is logged in
     checkLoginState();
 };
 }
 
-
+//Once app user logs in, display greeting + their first name
 function onLogin(response) {
 	  if (response.status == 'connected') {
 	    FB.api('/me?fields=first_name', function(data) {
@@ -27,7 +30,7 @@ function onLogin(response) {
 	  }
 };
 
-	
+//Function to load sdk
 function loadsdk(){
 (function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -39,7 +42,7 @@ function loadsdk(){
 };
 
 
-
+//Function to check login status of app user
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
@@ -48,21 +51,21 @@ function checkLoginState() {
 
 var user_id;
 
-function statusChangeCallback(response) {
+function statusChangeCallback(response) { // Called with the results from FB.getLoginStatus()
     console.log('statusChangeCallback');
-    console.log(response);
-    if (response.status === 'connected') {
+    console.log(response); // The current login status of app user.
+    if (response.status === 'connected') {  // User is logged into app and Facebook.
       user_id = response.authResponse.userID;
       console.log(user_id);
       extractInfo();
       console.log("Already LoggedIn");
-    } else {
+    } else { // Not logged into app or unable to tell.
       console.log("Please login");
       FB.login();
     }
   };
 
-(function(d, s, id) {
+(function(d, s, id) { // Load the SDK asynchronously
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
@@ -70,8 +73,9 @@ function statusChangeCallback(response) {
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-function shareTweet(){
-	checkLoginState();
+function shareTweet(){ //function to share tweet
+	checkLoginState(); //check if user is logged in
+	//  ui() is used to trigger Facebook created UI share dialog to be displayed on timeline
 	FB.ui({method: 'share',
 		href: document.getElementById("status").value,
 		quote: document.getElementById('text_content').value,
@@ -80,13 +84,14 @@ function shareTweet(){
 		{
 			console.log(response.error);
 			alert('Posting error occured');
-		}
-	});
+		} 
+	}); 
 	
 };
 
-function shareDirectTweet(){
-	checkLoginState();
+function shareDirectTweet(){ //function to share tweet directly
+	checkLoginState(); //check if user is logged in
+	//  ui() is used to trigger Facebook created UI share dialog to share tweet directly in the form message
 	FB.ui({method: 'share',
 		href: "https://apps.facebook.com/413904159227162",
 		quote: "https://apps.facebook.com/413904159227162",
@@ -95,12 +100,12 @@ function shareDirectTweet(){
 		{
 			console.log(response.error);
 			alert('Posting error occured');
-		}
+		} 
 	});
 }
 
 
-
+//function to fetch/get id, first and last name along with picture and store to datastore and to cookies as well.
 function extractInfo(){
 	FB.api('/me', 
 			'GET',
@@ -131,7 +136,7 @@ function extractInfo(){
 	console.log(document.getElementById("picture").value);
 };
 
-
+//return cookies when called
 function getCookie(cname) {
 	var re = new RegExp(cname + "=([^;]+)");
 	var value = re.exec(document.cookie);
@@ -139,6 +144,7 @@ function getCookie(cname) {
 }
 
 
+//  ui() is used to trigger Facebook created UI share dialog to share tweet directly in the form message
 function sendDirectMsg(){
 	checkLoginState();
 	FB.ui({method:  'send',
