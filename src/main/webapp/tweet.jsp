@@ -1,3 +1,7 @@
+<%--This is first Tweet page of the app where user can generate tweet, 
+post it on own timeline, friends timeline and also send it as a tweet as a message.
+user can also view all tweets made so far, and delete them as well.
+--%>
 <%@page import="com.google.appengine.api.datastore.PreparedQuery"%>
 <%@page import="com.google.appengine.api.datastore.Query"%>
 <%@page import="com.google.appengine.api.datastore.Entity"%>
@@ -23,6 +27,9 @@
 <script type="text/javascript" src="/js/tweet.js"></script>
 <script> callme();</script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	
+<!-- Google Analytics code for client side tracking-->
+	
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153765665-1"></script>
 <script>
