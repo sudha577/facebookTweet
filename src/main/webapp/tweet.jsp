@@ -36,7 +36,6 @@ user can also view all tweets made so far, and delete them as well.
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-153765665-1');
 </script>
 </head>
@@ -92,7 +91,6 @@ user can also view all tweets made so far, and delete them as well.
 </table>
 <hr>
 <script type="text/javascript">
-
 function shareMyTweet( message){ //method to share users tweet
 	//  ui() is used to trigger Facebook created UI share dialog to share tweet on timeline
 	FB.ui({method: 'share',
@@ -106,7 +104,6 @@ function shareMyTweet( message){ //method to share users tweet
 		}
 	});
 }
-
 function sendmyDirectTweet(message){ //method to share tweet directly as message
 	//  ui() is used to trigger Facebook created UI share dialog to share tweet to friend as message
 	FB.ui({method:  'send',
@@ -116,6 +113,12 @@ function sendmyDirectTweet(message){ //method to share tweet directly as message
 </script>
 <%	/*Servlet class -> create new tweet and store them*/
 	DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+if (request.getParameter("u_id") != null) {
+	Entity s = ds.get(KeyFactory.createKey("tweet", Long.parseLong(request.getParameter("u_id"))));
+	//s.getKey();
+	ds.delete(s.getKey());
+	out.println("tweet ID:" + Long.parseLong(request.getParameter("u_id")) + " is deleted from GAE");
+}
 	Entity e = new Entity("tweet");
 	Query q = new Query("tweet");
 	String uid=null;
@@ -205,12 +208,4 @@ function sendmyDirectTweet(message){ //method to share tweet directly as message
 			//  count++;
 		}
 	}
-	if (request.getParameter("u_id") != null) {
-		Entity s = ds.get(KeyFactory.createKey("tweet", Long.parseLong(request.getParameter("u_id"))));
-		//s.getKey();
-		ds.delete(s.getKey());
-		out.println("STATUS-->ID:" + Long.parseLong(request.getParameter("u_id")) + " deleted from GAE");
-	}
 %>
-
-
