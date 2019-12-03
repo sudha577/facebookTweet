@@ -1,3 +1,5 @@
+<%--this page displays tweets made by all friends--%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="com.google.appengine.api.datastore.DatastoreService" %>
@@ -15,7 +17,7 @@
 <head>
  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
  <link rel="stylesheet" href="/css/tweet.css">
- 
+ <!--Code for client side google analytics tracking -->
  <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153765665-1"></script>
 <script>
@@ -39,9 +41,9 @@
   </div>
 <%
 try{
-	DatastoreService ds=DatastoreServiceFactory.getDatastoreService();
+	DatastoreService ds=DatastoreServiceFactory.getDatastoreService(); //Get the datastore services
 
-Entity e=new Entity("tweet");
+Entity e=new Entity("tweet"); //create new entity tweet
 
 //Key k=KeyFactory.createKey("tweet", request.getParameter("id"));
 //Key k=KeyFactory.stringToKey(request.getParameter("id"));
@@ -49,25 +51,26 @@ Entity e=new Entity("tweet");
 //out.println(temp.getId());
 //Filter filter = new FilterPredicate("ID/Name",FilterOperator.EQUAL,request.getParameter("id"));
 //out.println(filter.toString());
-Query q=new Query("tweet");
+Query q=new Query("tweet"); 
 //out.println(q.toString());
-PreparedQuery pq = ds.prepare(q);
+PreparedQuery pq = ds.prepare(q); //PreparedQuery contains the methods for fetching query results from the datastore
 long visited_count=0;
 for (Entity result : pq.asIterable()) {
-   	  String first_name = (String) result.getProperty("first_name");
-	  String lastName = (String) result.getProperty("last_name");
-	  String picture = (String) result.getProperty("profil_pic");
-	  String status = (String) result.getProperty("status");
-	  Long id = (Long) result.getKey().getId();
-	  String time = (String) result.getProperty("timestamp");
-	  visited_count = (Long)((result.getProperty("visited_count")));
+   	  String first_name = (String) result.getProperty("first_name"); //fetch user's friend's first name
+	  String lastName = (String) result.getProperty("last_name"); //fetch user's friend's last name
+	  String picture = (String) result.getProperty("profil_pic"); //fetch user's friend's profile picture
+	  String status = (String) result.getProperty("status"); //fetch user's friend's status
+	  Long id = (Long) result.getKey().getId(); //fetch user's friend's id
+	  String time = (String) result.getProperty("timestamp"); //fetch user's friend's tweet's timestamp
+	  visited_count = (Long)((result.getProperty("visited_count"))); //fetch visited count of user's friend's tweet
 	  Key k= result.getKey();
 	  if(id==Long.parseLong(request.getParameter("id"))){
 	 // out.println(result.getKey().getId()+" "+first_name + " " + lastName + ", " + picture + " "+visited_count);
 	  Entity s=ds.get(KeyFactory.createKey("tweet", id));
-	  s.setProperty("visited_count", visited_count+1);
+	  s.setProperty("visited_count", visited_count+1); // increment visited count by 1 and save it to instance s
 	//  out.println("check"+s.getProperty("visited_count"));
-	  ds.put(s);
+	  ds.put(s); //save s in datastore
+	  //print all the attributes of instance s
 	  out.println("<h1>Status of "+ s.getProperty("first_name")+" "+s.getProperty("last_name")+"</h1>");
 	  out.println("<table frame=box>");
 	  out.println("<tr><td><div style="+"height: 50px; width:50px>"+picture+"</div><td>");
@@ -78,7 +81,7 @@ for (Entity result : pq.asIterable()) {
 	  }
 	}
 }catch(Exception e){
-	out.println(e);
+	out.println(e); //print error
 }
 %>
 </body>
