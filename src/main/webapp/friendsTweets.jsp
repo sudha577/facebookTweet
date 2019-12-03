@@ -1,3 +1,6 @@
+<%--
+This page displays tweets from Friends
+--%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="com.google.appengine.api.datastore.DatastoreService" %>
 <%@ page import="com.google.appengine.api.datastore.DatastoreServiceFactory" %>
@@ -14,7 +17,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="/css/tweet.css">
-	
+	<!--Code for client side google analytics tracking -->
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153765665-1"></script>
 <script>
