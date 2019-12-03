@@ -64,6 +64,47 @@
 
 </body>
 </html>
+	<script type="text/javascript">
+	function modalOpen(obj){
+		console.log("inside"+obj.value);
+	var modal = document.getElementById('mypopup');
+	var btn = obj;
+	var span = document.getElementsByClassName("close")[0];
+	modal.style.display = "block";
+	span.onclick = function() {
+		modal.style.display = "none";
+	};
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	};
+	}
+	</script>
+	</div>
+</table>
+<hr>
+<script type="text/javascript">
+
+function shareMyTweet( message){
+	FB.ui({method: 'share',
+		href: message,
+		//quote: document.getElementById('text_content').value,
+		},function(response){
+		if (!response || response.error)
+		{
+			console.log(response.error);
+			alert('Posting error occured');
+		}
+	});
+}
+
+function sendmyDirectTweet(message){
+	FB.ui({method:  'send',
+		  link: message,});
+	console.log(document.getElementById("status"));
+}
+</script>
 <%
 	DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 	Entity e = new Entity("tweet");
@@ -124,8 +165,8 @@
 	</tr>
 	<tr>
 		<form action="tweet.jsp" action="GET">
-			<input type=hidden name=user_id id=user_id value=<%=user_id%> /> <input
-				type=hidden name=u_id id=u_id value=<%=id%> />
+			<input type=hidden name=user_id id=user_id value=<%=user_id%> /> 
+			<input type=hidden name=u_id id=u_id value=<%=id%> />
 			<td><button name="Delete" type="submit" class="button"
 					value=Delete />Delete</button></td>
 		</form>
@@ -146,47 +187,8 @@
 		<td><button name="Share" type="button" class="button" id=share
 				value=<%=sb%>  onclick=modalOpen(this) />share</td>
 	</tr>
-	<script type="text/javascript">
-	function modalOpen(obj){
-		console.log("inside"+obj.value);
-	var modal = document.getElementById('mypopup');
-	var btn = obj;
-	var span = document.getElementsByClassName("close")[0];
-	modal.style.display = "block";
-	span.onclick = function() {
-		modal.style.display = "none";
-	};
-	window.onclick = function(event) {
-		if (event.target == modal) {
-			modal.style.display = "none";
-		}
-	};
-	}
-	</script>
-	</div>
-</table>
-<hr>
-<script type="text/javascript">
+	<hr>
 
-function shareMyTweet( message){
-	FB.ui({method: 'share',
-		href: message,
-		//quote: document.getElementById('text_content').value,
-		},function(response){
-		if (!response || response.error)
-		{
-			console.log(response.error);
-			alert('Posting error occured');
-		}
-	});
-}
-
-function sendmyDirectTweet(message){
-	FB.ui({method:  'send',
-		  link: message,});
-	console.log(document.getElementById("status"));
-}
-</script>
 <%
 	Entity s = ds.get(KeyFactory.createKey("tweet", id));
 			s.setProperty("visited_count", visited_count + 1);
