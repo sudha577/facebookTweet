@@ -1,3 +1,7 @@
+<%--This is first Tweet page of the app where user can generate tweet, 
+post it on own timeline, friends timeline and also send it as a tweet as a message.
+user can also view all tweets made so far, and delete them as well.
+--%>
 <%@page import="com.google.appengine.api.datastore.PreparedQuery"%>
 <%@page import="com.google.appengine.api.datastore.Query"%>
 <%@page import="com.google.appengine.api.datastore.Entity"%>
@@ -23,6 +27,9 @@
 <script type="text/javascript" src="/js/tweet.js"></script>
 <script> callme();</script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	
+<!-- Google Analytics code for client side tracking-->
+	
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153765665-1"></script>
 <script>
@@ -86,12 +93,13 @@
 <hr>
 <script type="text/javascript">
 
-function shareMyTweet( message){
+function shareMyTweet( message){ //method to share users tweet
+	//  ui() is used to trigger Facebook created UI share dialog to share tweet on timeline
 	FB.ui({method: 'share',
 		href: message,
 		//quote: document.getElementById('text_content').value,
 		},function(response){
-		if (!response || response.error)
+		if (!response || response.error) //response when error occurs while posting
 		{
 			console.log(response.error);
 			alert('Posting error occured');
@@ -99,13 +107,14 @@ function shareMyTweet( message){
 	});
 }
 
-function sendmyDirectTweet(message){
+function sendmyDirectTweet(message){ //method to share tweet directly as message
+	//  ui() is used to trigger Facebook created UI share dialog to share tweet to friend as message
 	FB.ui({method:  'send',
 		  link: message,});
-	console.log(document.getElementById("status"));
+	console.log(document.getElementById("status")); // log the status of posting by id
 }
 </script>
-<%
+<%	/*Servlet class -> create new tweet and store them*/
 	DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 	Entity e = new Entity("tweet");
 	Query q = new Query("tweet");
