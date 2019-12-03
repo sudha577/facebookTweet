@@ -49,8 +49,9 @@ This page display top tweets from friends based on count it has been visited
 </body>
 </html>
 
-//display top 10 tweets from datastore
+
 <% 
+//display top 10 tweets from datastore
 	DatastoreService ds=DatastoreServiceFactory.getDatastoreService(); //Create instance of DataStore (ds)
 	Entity e=new Entity("tweet");  //creates new entity called tweet 
 	Query q=new Query("tweet").addSort("visited_count", SortDirection.DESCENDING); //Create query string for tweet based on descending order of tweets visited count
@@ -71,10 +72,10 @@ This page display top tweets from friends based on count it has been visited
 			  
 			  <table>
 			 
-			  <td><strong>User:</strong> <%= first_name+" "+lastName %> </td></tr> //display first and last name concatenated
-			  <tr><td><strong>Status:</strong> <%= status %></td></tr> //display status
-			  <tr><td><strong>Posted at:</strong> <%=time %></td></tr> //display timestamp of the tweet
-			  <tr><td><strong>#Visited:</strong> <%= visited_count %></td></tr> //display number of times it was visited
+			  <td><strong>User:</strong> <%= first_name+" "+lastName %> </td></tr> 
+			  <tr><td><strong>Status:</strong> <%= status %></td></tr> 
+			  <tr><td><strong>Posted at:</strong> <%=time %></td></tr> 
+			  <tr><td><strong>#Visited:</strong> <%= visited_count %></td></tr> 
 			  </table>
 			  
 			  <br><hr>	<br>
