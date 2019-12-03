@@ -93,12 +93,13 @@ user can also view all tweets made so far, and delete them as well.
 <hr>
 <script type="text/javascript">
 
-function shareMyTweet( message){
+function shareMyTweet( message){ //method to share users tweet
+	//  ui() is used to trigger Facebook created UI share dialog to share tweet on timeline
 	FB.ui({method: 'share',
 		href: message,
 		//quote: document.getElementById('text_content').value,
 		},function(response){
-		if (!response || response.error)
+		if (!response || response.error) //response when error occurs while posting
 		{
 			console.log(response.error);
 			alert('Posting error occured');
@@ -106,13 +107,14 @@ function shareMyTweet( message){
 	});
 }
 
-function sendmyDirectTweet(message){
+function sendmyDirectTweet(message){ //method to share tweet directly as message
+	//  ui() is used to trigger Facebook created UI share dialog to share tweet to friend as message
 	FB.ui({method:  'send',
 		  link: message,});
-	console.log(document.getElementById("status"));
+	console.log(document.getElementById("status")); // log the status of posting by id
 }
 </script>
-<%
+<%	/*Servlet class -> create new tweet and store them*/
 	DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 	Entity e = new Entity("tweet");
 	Query q = new Query("tweet");
