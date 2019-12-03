@@ -48,37 +48,40 @@ This page display top tweets from friends based on count it has been visited
 <h1>Here are the top 10 tweets!!</h1>
 </body>
 </html>
-<%
-	DatastoreService ds=DatastoreServiceFactory.getDatastoreService();
-	Entity e=new Entity("tweet");
-	Query q=new Query("tweet").addSort("visited_count", SortDirection.DESCENDING);
-	PreparedQuery pq = ds.prepare(q);
+
+//display top 10 tweets from datastore
+<% 
+	DatastoreService ds=DatastoreServiceFactory.getDatastoreService(); //Create instance of DataStore (ds)
+	Entity e=new Entity("tweet");  //creates new entity called tweet 
+	Query q=new Query("tweet").addSort("visited_count", SortDirection.DESCENDING); //Create query string for tweet based on descending order of tweets visited count
+	PreparedQuery pq = ds.prepare(q); //send this query to datastore ds
 	int count=0;
+	//loop to display tweets till count value reaches from 0 to 9 (top 10)
 	for (Entity result : pq.asIterable()) {
 		if(count<10){
 			  //out.println(result.getProperty("first_name")+" "+request.getParameter("name"));
-			  String first_name = (String) result.getProperty("first_name");
-			  String lastName = (String) result.getProperty("last_name");
+			  String first_name = (String) result.getProperty("first_name"); //fetch first_name of user who posted tweet
+			  String lastName = (String) result.getProperty("last_name"); //fetch last_name of user who posted tweet
 			
-			  String status = (String) result.getProperty("status");
-			  Long id = (Long) result.getKey().getId();
-			  String time = (String) result.getProperty("timestamp");
-			  Long visited_count = (Long)((result.getProperty("visited_count")));
+			  String status = (String) result.getProperty("status"); //fetch status of user who posted tweet
+			  Long id = (Long) result.getKey().getId(); //fetch id of user who posted tweet
+			  String time = (String) result.getProperty("timestamp"); //fetch timestamp of the tweet
+			  Long visited_count = (Long)((result.getProperty("visited_count"))); //fetch how many times the tweet was visited
 %>
 			  
 			  <table>
 			 
-			  <td><strong>User:</strong> <%= first_name+" "+lastName %> </td></tr>
-			  <tr><td><strong>Status:</strong> <%= status %></td></tr>
-			  <tr><td><strong>Posted at:</strong> <%=time %></td></tr>
-			  <tr><td><strong>#Visited:</strong> <%= visited_count %></td></tr>
+			  <td><strong>User:</strong> <%= first_name+" "+lastName %> </td></tr> //display first and last name concatenated
+			  <tr><td><strong>Status:</strong> <%= status %></td></tr> //display status
+			  <tr><td><strong>Posted at:</strong> <%=time %></td></tr> //display timestamp of the tweet
+			  <tr><td><strong>#Visited:</strong> <%= visited_count %></td></tr> //display number of times it was visited
 			  </table>
 			  
 			  <br><hr>	<br>
-			<%  Entity s=ds.get(KeyFactory.createKey("tweet", id));
-			  s.setProperty("visited_count", visited_count+1);
-			  ds.put(s);
-			  count++;
+			<%  Entity s=ds.get(KeyFactory.createKey("tweet", id)); 
+			  s.setProperty("visited_count", visited_count+1); 
+			  ds.put(s); //increment visited count and store it in the data store
+			  count++; //increment count by 1
 		}
 	}
 %>
